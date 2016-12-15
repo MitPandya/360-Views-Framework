@@ -4,18 +4,22 @@
 
    <head>
       <title>360 Views Framework</title>
-      <link rel="stylesheet" href="/static/css/pannellum.css">
+      {% comment %}<link rel="stylesheet" href="/static/css/pannellum.css">{% endcomment %}
       <link rel="stylesheet" href="/static/css/app.css">
+      <link rel="stylesheet" href="/static/bower_components/Photo-Sphere-Viewer/dist/photo-sphere-viewer.min.css">
 
-      <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+
       <script src="/static/bower_components/angular/angular.js"></script>
       <script src="/static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
       <script src="/static/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+      <script src="/static/bower_components/D.js/lib/D.min.js"></script>
+      <script src="/static/bower_components/doT/doT.min.js"></script>
+      <script src="/static/bower_components/three.js/three.js"></script>
+      <script src="/static/bower_components/uevent/uevent.min.js"></script>
+      <script src="/static/bower_components/Photo-Sphere-Viewer/dist/photo-sphere-viewer.js"></script>
       <script src="/static/js/app.js"></script>
       <script src="/static/js/controllers/MainController.js"></script>
-      <script src="/static/js/photosphere/three.min.js"></script>
-      <script src="/static/js/photosphere/photosphere.js"></script>
-      <script src="/static/js/pannellum/pannellum.js"></script>
+      {% comment %}<script src="/static/js/pannellum/pannellum.js"></script>{% endcomment %}
    </head>
 
    <body>
