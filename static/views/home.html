@@ -1,17 +1,24 @@
 <div id="container" layout="column">
 
     <div id="photosphere" ng-dblclick="onClick($event)" flex></div>
-    <choose-file layout="row" flex="25" layout-align="center center">
-    <input id="fileInput" type="file" class="ng-hide">
-    <md-input-container flex-20 class="md-block">
-      <input type="text" ng-model="fileName" disabled>
-      <div class="hint">Select your file</div>
-    </md-input-container>
-    <div>
-      <md-button id="uploadButton" class="md-fab md-mini">
-        <md-icon class="material-icons">attach_file</md-icon>
-      </md-button>
+    <div layout="row" flex="50" layout-align="center center">
+        <div layout="column">
+            <choose-file layout="row" flex="25">
+                <input id="fileInput" type="file" class="ng-hide">
+                <md-input-container flex-20 class="md-block">
+                  <input type="text" ng-model="fileName" disabled>
+                  <div class="hint">Select your file</div>
+                </md-input-container>
+                <div>
+                  <md-button id="uploadButton" class="md-fab md-mini">
+                    <md-icon class="material-icons">attach_file</md-icon>
+                  </md-button>
+                </div>
+            </choose-file>
+        </div>
+        <div layout="column">
+            <md-button class="md-raised md-primary" ng-click="saveImageToBackend()">Save</md-button>
+        </div>
     </div>
-  </choose-file>
 
 </div>
