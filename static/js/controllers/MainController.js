@@ -12,6 +12,8 @@ angular.module('360ViewsFramework')
 	}
 
 	$scope.PSV = null;
+	$scope.markerType = null;
+
 	$scope.onImageChange = function(){
 		$http({
   		method: 'GET',
@@ -49,19 +51,54 @@ angular.module('360ViewsFramework')
 	})
 
   	$scope.onClick = function() {
-    	$scope.PSV.addMarker({
-		  id: '#' + Math.random(),
-		  longitude: $scope.e.longitude,
-		  latitude: $scope.e.latitude,
-		  image: 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png',
-		  width: 32,
-		  height: 32,
-		  anchor: 'bottom center',
-		  tooltip: 'Generated pin',
-		  data: {
-			generated: true
-		  }
-		});
+		if($scope.markerType == null) {
+			$scope.PSV.addMarker({
+				id: '#' + Math.random(),
+				longitude: $scope.e.longitude,
+				latitude: $scope.e.latitude,
+				image: 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png',
+				width: 32,
+				height: 32,
+				anchor: 'bottom center',
+				tooltip: 'Generated pin',
+				data: {
+					generated: true
+				}
+			});
+		}else if($scope.markerType == 'HTML'){
+			$scope.PSV.addMarker({
+				id: '#' + Math.random(),
+			    longitude: $scope.e.longitude,
+				latitude: $scope.e.latitude,
+			    html: $scope.markerData.displayText,
+			    anchor: 'bottom right',
+			    style: {
+				  maxWidth: $scope.markerData.maxWidth==''?'100px':$scope.markerData.maxWidth,
+				  color: $scope.markerData.fontColor==''?'white':$scope.markerData.fontColor,
+				  fontSize: $scope.markerData.fontSize==''?'20px':$scope.markerData.fontColor,
+				  fontFamily: 'Helvetica, sans-serif',
+				  textAlign: 'center'
+			    },
+			    tooltip: {
+				  content: $scope.markerData.tooltipText==''?'An HTML marker':$scope.markerData.tooltipText,
+				  position: 'right'
+			    },
+				data: {
+					generated: true
+				}
+			})
+		}else if($scope.markerType == 'Shape'){
+			$scope.PSV.addMarker({
+			  id: '#' + Math.random(),
+			  circle: parseFloat($scope.markerData.radius)==''?20:parseFloat($scope.markerData.radius),
+			  x: $scope.e.texture_x,
+			  y: $scope.e.texture_y,
+			  tooltip: $scope.markerData.tooltipText==''?'A Circle marker':$scope.markerData.tooltipText,
+			  data: {
+					generated: true
+			  }
+			})
+		}
   	}
 
 	$scope.e;
@@ -92,6 +129,11 @@ angular.module('360ViewsFramework')
 			marker.anchor = m.anchor;
 			marker.tooltip = m.tooltip;
 			marker.data = m.data;
+			marker.html = m.html;
+			marker.circle = m.circle;
+			marker.x = m.x;
+			marker.y = m.y;
+			marker.style = m.style;
 			markers.push(marker);
 			marker_json.markers = markers;
   		}
@@ -122,6 +164,7 @@ angular.module('360ViewsFramework')
 	$scope.parseData = function(data){
 		data = data.replace(/u'/g , "\"").replace(/'/g, "\"");
 		data = data.replace(/True/g , "\"True\"").replace(/False/g , "\"False\"");
+		data = data.replace(/""True""/g , "\"True\"").replace(/""False""/g , "\"False\"");
 		data = JSON.parse(data);
 		return data.markers;
 	}

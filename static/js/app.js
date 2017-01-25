@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var app = angular.module('360ViewsFramework', ['ui.router','ngSanitize','ngMaterial']);
+var app = angular.module('360ViewsFramework', ['ui.router','ngSanitize','ngMaterial','ngAnimate','angular-loading-bar']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');

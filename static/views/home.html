@@ -1,6 +1,51 @@
 <div id="container" layout="column">
+  <div layout="row" class="layout-align-center">
+    <div id="photosphere" ng-dblclick="onClick($event)" flex="60"></div>
+    <div flex="10">
+      <form ng-submit="submit()" ng-cloak style="margin-left:20%">
+        <p>Marker type: <span class="radioValue">{{ markerType }}</span> </p>
 
-    <div id="photosphere" ng-dblclick="onClick($event)" flex></div>
+        <md-radio-group ng-model="markerType" layout="row">
+
+          <md-radio-button value="Shape" class="md-primary"> Shape </md-radio-button>
+          <md-radio-button value="HTML"> HTML </md-radio-button>
+
+        </md-radio-group>
+        <div ng-show="markerType == 'HTML'">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Text </label>
+            <input ng-model="markerData.displayText">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Max Width </label>
+            <input ng-model="markerData.maxWidth" ng-pattern="/^[0-9]{3}$/">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Font size </label>
+            <input ng-model="markerData.fontSize" ng-pattern="/^[0-9]{2}$/">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Font color </label>
+            <input ng-model="markerData.fontColor">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Tooltip text </label>
+            <input ng-model="markerData.tooltipText">
+          </md-input-container>
+        </div>
+        <div ng-show="markerType == 'Shape'">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Radius </label>
+            <input ng-model="markerData.radius" ng-pattern="/^[0-9]{2}$/">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Tooltip text </label>
+            <input ng-model="markerData.tooltipText">
+          </md-input-container>
+        </div>
+      </form>
+    </div>
+  </div>
     <div layout="row" flex="50" layout-align="center center">
         <div layout="column">
             <choose-file layout="row" flex="25">
