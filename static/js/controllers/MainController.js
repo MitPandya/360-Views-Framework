@@ -50,61 +50,75 @@ angular.module('360ViewsFramework')
 		container: 'photosphere'
 	})
 
-  	$scope.onClick = function() {
-		if($scope.markerType == null) {
-			$scope.PSV.addMarker({
-				id: '#' + Math.random(),
-				longitude: $scope.e.longitude,
-				latitude: $scope.e.latitude,
-				image: 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png',
-				width: 32,
-				height: 32,
-				anchor: 'bottom center',
-				tooltip: 'Generated pin',
-				data: {
-					generated: true
-				}
-			});
-		}else if($scope.markerType == 'HTML'){
-			$scope.PSV.addMarker({
-				id: '#' + Math.random(),
-			    longitude: $scope.e.longitude,
-				latitude: $scope.e.latitude,
-			    html: $scope.markerData.displayText,
-			    anchor: 'bottom right',
-			    style: {
-				  maxWidth: $scope.markerData.maxWidth==''?'100px':$scope.markerData.maxWidth,
-				  color: $scope.markerData.fontColor==''?'white':$scope.markerData.fontColor,
-				  fontSize: $scope.markerData.fontSize==''?'20px':$scope.markerData.fontColor,
-				  fontFamily: 'Helvetica, sans-serif',
-				  textAlign: 'center'
-			    },
-			    tooltip: {
-				  content: $scope.markerData.tooltipText==''?'An HTML marker':$scope.markerData.tooltipText,
-				  position: 'right'
-			    },
-				data: {
-					generated: true
-				}
-			})
-		}else if($scope.markerType == 'Shape'){
-			$scope.PSV.addMarker({
-			  id: '#' + Math.random(),
-			  circle: parseFloat($scope.markerData.radius)==''?20:parseFloat($scope.markerData.radius),
-			  x: $scope.e.texture_x,
-			  y: $scope.e.texture_y,
-			  tooltip: $scope.markerData.tooltipText==''?'A Circle marker':$scope.markerData.tooltipText,
-			  data: {
-					generated: true
-			  }
-			})
+  	$scope.onClick = function(event) {
+		if(event.srcElement.localName == 'svg') {
+			if ($scope.markerType == null) {
+				$scope.PSV.addMarker({
+					id: '#' + Math.random(),
+					longitude: $scope.e.longitude,
+					latitude: $scope.e.latitude,
+					image: 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png',
+					width: 32,
+					height: 32,
+					anchor: 'bottom center',
+					tooltip: 'Generated pin',
+					layer: 'library',
+					data: {
+						generated: true
+					}
+				});
+			} else if ($scope.markerType == 'HTML') {
+				$scope.PSV.addMarker({
+					id: '#' + Math.random(),
+					longitude: $scope.e.longitude,
+					latitude: $scope.e.latitude,
+					html: $scope.markerData.displayText,
+					anchor: 'bottom right',
+					style: {
+						maxWidth: $scope.markerData.maxWidth == '' ? '100px' : $scope.markerData.maxWidth,
+						color: $scope.markerData.fontColor == '' ? 'white' : $scope.markerData.fontColor,
+						fontSize: $scope.markerData.fontSize == '' ? '20px' : $scope.markerData.fontColor,
+						fontFamily: 'Helvetica, sans-serif',
+						textAlign: 'center'
+					},
+					tooltip: {
+						content: $scope.markerData.tooltipText == '' ? 'An HTML marker' : $scope.markerData.tooltipText,
+						position: 'right'
+					},
+					layer: 'library',
+					data: {
+						generated: true
+					}
+				})
+			} else if ($scope.markerType == 'Shape') {
+				$scope.PSV.addMarker({
+					id: '#' + Math.random(),
+					circle: parseFloat($scope.markerData.radius) == '' ? 20 : parseFloat($scope.markerData.radius),
+					x: $scope.e.texture_x,
+					y: $scope.e.texture_y,
+					tooltip: $scope.markerData.tooltipText == '' ? 'A Circle marker' : $scope.markerData.tooltipText,
+					layer: 'library',
+					data: {
+						generated: true
+					}
+				})
+			}
 		}
   	}
 
 	$scope.e;
 	$scope.PSV.on('click', function(e) {
-		console.log($scope.fileName);
   		$scope.e = e;
+	});
+	$scope.layer = ""
+	$scope.handleClick = function(event){
+		if(event.srcElement.className == "psv-layers-list-name"){
+			$scope.layer = event.srcElement.innerText;
+		}
+	}
+
+	$scope.$watch('layer', function (newValue, oldValue, scope) {
+    	console.log('layer '+ newValue +' '+ oldValue);
 	});
 
   	$scope.PSV.on('select-marker', function(marker) {
@@ -134,6 +148,7 @@ angular.module('360ViewsFramework')
 			marker.x = m.x;
 			marker.y = m.y;
 			marker.style = m.style;
+			marker.layer = m.layer;
 			markers.push(marker);
 			marker_json.markers = markers;
   		}

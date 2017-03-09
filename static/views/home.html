@@ -1,6 +1,6 @@
 <div id="container" layout="column">
   <div layout="row" class="layout-align-center">
-    <div id="photosphere" ng-dblclick="onClick($event)" flex="60"></div>
+    <div id="photosphere" ng-dblclick="onClick($event)" ng-click="handleClick($event)" flex="60"></div>
     <div flex="10">
       <form ng-submit="submit()" ng-cloak style="margin-left:20%">
         <p>Marker type: <span class="radioValue">{{ markerType }}</span> </p>

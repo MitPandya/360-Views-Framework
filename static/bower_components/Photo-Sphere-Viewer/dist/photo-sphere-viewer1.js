@@ -834,7 +834,6 @@ PhotoSphereViewer.DEFAULTS = {
     download: 'Download',
     fullscreen: 'Fullscreen',
     markers: 'Markers',
-    layers: 'Layers',
     panels: 'Panels',
     gyroscope: 'Gyroscope'
   },
@@ -875,12 +874,13 @@ PhotoSphereViewer.TEMPLATES = {
   </ul> \
 </div>',
   layersList: '\
-<div class="psv-layers-list-container"> \
-  <h1 class="psv-layers-list-title">{{= it.config.lang.layers }}</h1> \
-  <ul class="psv-markers-list psv-layers-list"> \
-  {{~ it.layers: layer }} \
-    <li data-psv-marker="{{= layer.id }}" class="psv-markers-list-item {{? layer.className }}{{= layer.className }}{{?}}"> \
-      <p class="psv-layers-list-name">{{? layer.layer }}{{= layer.layer }}{{?}}</p> \
+<div class="psv-markers-list-container"> \
+  <h1 class="psv-markers-list-title">{{= it.config.lang.markers }}</h1> \
+  <ul class="psv-markers-list"> \
+  {{~ it.markers: marker }} \
+    <li data-psv-marker="{{= marker.id }}" class="psv-markers-list-item {{? marker.className }}{{= marker.className }}{{?}}"> \
+      {{? marker.image }}<img class="psv-markers-list-image" src="{{= marker.image }}"/>{{?}} \
+      <p class="psv-markers-list-name">{{? marker.tooltip }}{{= marker.tooltip.content }}{{?? marker.html }}{{= marker.html }}{{??}}{{= marker.id }}{{?}}</p> \
     </li> \
   {{~}} \
   </ul> \
@@ -3410,6 +3410,7 @@ PSVNavBarSpacer.prototype.constructor = PSVNavBarSpacer;
 
 PSVNavBarSpacer.className = 'psv-spacer';
 
+
 /**
  * Panel class
  * @param {PhotoSphereViewer} psv
@@ -4546,15 +4547,15 @@ PSVNavBarPanelsButton.prototype.showMarkersList = function() {
     layers.push(this.psv.hud.markers[id]);
   }
 
-  var html = this.psv.config.templates.layersList({
-    layers: this.psv.change('render-leyers-list', layers),
+  var html = this.psv.config.templates.markersList({
+    markers: this.psv.change('render-markers-list', layers),
     config: this.psv.config
   });
 
   this.prop.panelOpening = true;
   this.psv.panel.showPanel(html, true);
 
-  this.psv.panel.container.querySelector('.psv-layers-list').addEventListener('click', this._openLayer.bind(this));
+  this.psv.panel.container.querySelector('.psv-markers-list').addEventListener('click', this._onClickItem.bind(this));
 };
 
 /**
@@ -4571,8 +4572,12 @@ PSVNavBarPanelsButton.prototype.hideMarkersList = function() {
  * @param {MouseEvent} e
  * @private
  */
-PSVNavBarPanelsButton.prototype._openLayer = function(e) {
-  //console.log(e);
+PSVNavBarPanelsButton.prototype._onClickItem = function(e) {
+  var li;
+  if (e.target && (li = PSVUtils.getClosest(e.target, 'li')) && li.dataset.psvMarker) {
+    this.psv.hud.gotoMarker(li.dataset.psvMarker, 1000);
+    this.psv.panel.hidePanel();
+  }
 };
 
 /**
