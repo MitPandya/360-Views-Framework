@@ -1,1 +1,1 @@
-web: gunicorn _360_Views_Framework:app
+web: gunicorn LibraryProjects.wsgi
