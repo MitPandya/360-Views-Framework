@@ -76,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="873">
-              <caret line="121" column="46" selection-start-line="121" selection-start-column="46" selection-end-line="121" selection-end-column="46" />
+              <caret line="121" column="38" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -903,7 +903,7 @@
     <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="873">
-          <caret line="121" column="46" selection-start-line="121" selection-start-column="46" selection-end-line="121" selection-end-column="46" />
+          <caret line="121" column="38" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
           <folding />
         </state>
       </provider>
