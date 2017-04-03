@@ -4479,6 +4479,7 @@ PSVNavBarPanelsButton.className = 'psv-button psv-button--hover-scale psv-marker
 PSVNavBarPanelsButton.icon = 'layers.svg';
 PSVNavBarPanelsButton.publicMethods = ['toggleMarkersList', 'showMarkersList', 'hideMarkersList'];
 
+var selectedLayer = null;
 /**
  * Creates the button
  */
@@ -4518,7 +4519,7 @@ PSVNavBarPanelsButton.prototype.handleEvent = function(e) {
 };
 
 /**
- * Toggles markers list on click
+ * Toggles layers list on click
  * @private
  */
 PSVNavBarPanelsButton.prototype._onClick = function() {
@@ -4526,7 +4527,7 @@ PSVNavBarPanelsButton.prototype._onClick = function() {
 };
 
 /**
- * Toggle the visibility of markers list
+ * Toggle the visibility of layers list
  */
 PSVNavBarPanelsButton.prototype.toggleMarkersList = function() {
   if (this.prop.panelOpened) {
@@ -4542,8 +4543,12 @@ PSVNavBarPanelsButton.prototype.toggleMarkersList = function() {
  */
 PSVNavBarPanelsButton.prototype.showMarkersList = function() {
   var layers = [];
+  var temp = [];
   for (var id in this.psv.hud.markers) {
-    layers.push(this.psv.hud.markers[id]);
+    if(temp.indexOf(this.psv.hud.markers[id].layer) < 0) {
+      layers.push(this.psv.hud.markers[id]);
+      temp.push(this.psv.hud.markers[id].layer);
+    }
   }
 
   var html = this.psv.config.templates.layersList({
@@ -4572,7 +4577,8 @@ PSVNavBarPanelsButton.prototype.hideMarkersList = function() {
  * @private
  */
 PSVNavBarPanelsButton.prototype._openLayer = function(e) {
-  //console.log(e);
+  console.log(e);
+  selectedLayer = e.srcElement;
 };
 
 /**

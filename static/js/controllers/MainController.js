@@ -25,13 +25,13 @@ angular.module('360ViewsFramework')
 				var data = JSON.parse(response.data.image);
 				$scope.fileName = data[0].fields.image_name;
 				//$scope.file = data[0].fields.image_location;
-				var markerData = data[0].fields.image_marker_data;
-				markerData = $scope.parseData(markerData);
+				var temp = data[0].fields.image_marker_data;
+				$scope.markerData = $scope.parseData(temp);
 				$scope.PSV.setPanorama($scope.file);
 				$timeout(function () {
 					if($scope.markerData!={}) {
-						for (var i = 0; i < markerData.length; i++) {
-							$scope.PSV.addMarker(markerData[i]);
+						for (var i = 0; i < $scope.markerData.length; i++) {
+							$scope.PSV.addMarker($scope.markerData[i]);
 						}
 					}
 				}, 1000);
@@ -116,9 +116,12 @@ angular.module('360ViewsFramework')
 			$scope.layer = event.srcElement.innerText;
 		}
 	}
-
+	// filter markers based on layer
 	$scope.$watch('layer', function (newValue, oldValue, scope) {
     	console.log('layer '+ newValue +' '+ oldValue);
+		if(newValue != oldValue) {
+			$scope.filterData(newValue);
+		}
 	});
 
   	$scope.PSV.on('select-marker', function(marker) {
@@ -182,6 +185,19 @@ angular.module('360ViewsFramework')
 		data = data.replace(/""True""/g , "\"True\"").replace(/""False""/g , "\"False\"");
 		data = JSON.parse(data);
 		return data.markers;
+	}
+
+	$scope.filterData = function(layerFilter){
+		if(layerFilter != null && layerFilter != ""){
+			for (var i = 0; i < $scope.markerData.length ; i++ ){
+				if($scope.markerData[i].layer != layerFilter){
+					$scope.PSV.hideMarker($scope.markerData[i]);
+				}
+				else if($scope.markerData[i].layer == layerFilter){
+					$scope.PSV.showMarker($scope.markerData[i]);
+				}
+			}
+		}
 	}
 
 })
