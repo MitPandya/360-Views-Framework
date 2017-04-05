@@ -122,9 +122,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, '../Framework/static'),
-)
+'''STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, '../Framework/static/'),
+)'''
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
