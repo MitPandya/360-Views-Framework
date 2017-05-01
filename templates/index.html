@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html ng-app="360ViewsFramework">
+
+   <head>
+      <title>360 Views Framework</title>
+      {% comment %}<link rel="stylesheet" href="/static/css/pannellum.css">{% endcomment %}
+      <link rel="stylesheet" href="/static/css/app.css">
+      <link rel="stylesheet" href="/static/bower_components/Photo-Sphere-Viewer/dist/photo-sphere-viewer.min.css">
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="/static/bower_components/angular-loading-bar/build/loading-bar.min.css">
+    </head>
+
+
+      <script src="/static/bower_components/angular/angular.js"></script>
+      <script src="/static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+      <script src="/static/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+      <script src="/static/bower_components/D.js/lib/D.min.js"></script>
+      <script src="/static/bower_components/doT/doT.min.js"></script>
+      <script src="/static/bower_components/three.js/three.js"></script>
+      <script src="/static/bower_components/uevent/uevent.min.js"></script>
+      <script src="/static/js/app.js"></script>
+      <script src="/static/js/controllers/MainController.js"></script>
+      <script src="/static/bower_components/Photo-Sphere-Viewer/dist/photo-sphere-viewer.js"></script>
+      <script src="/static/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+
+      {% comment %}<script src="/static/js/pannellum/pannellum.js"></script>{% endcomment %}
+   </head>
+
+   <body>
+      <div layout="column">
+          <h1 style="text-align: center" flex>Wel-come to 360 Views Framework</h1>
+          <div id="loading-bar-container"></div>
+          <div flex id="content" ui-view></div>
+      </div>
+   </body>
+</html>
+</html>

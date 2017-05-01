@@ -31,4 +31,8 @@ class ImageController:
             image.image_name = image_data['image']['name']
             image.image_location = image_data['image']['path']
             image.image_marker_data = image_data['image']['marker_json']
+<<<<<<< HEAD
             image.save()
+=======
+            image.save()
+>>>>>>> 79fe5ec721a6dd7a8965d434170883d41247c0c3

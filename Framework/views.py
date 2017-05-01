@@ -2,7 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 import json
 from django.views.decorators.csrf import csrf_exempt
+<<<<<<< HEAD
 from Framework import imageController
+=======
+from _360_Views_Framework import imageController
+>>>>>>> 79fe5ec721a6dd7a8965d434170883d41247c0c3
 from django.http import request, response
 
 # Create your views here.6
