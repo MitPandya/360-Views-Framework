@@ -17,9 +17,9 @@ class Migration(migrations.Migration):
             name='Image',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image_location', models.CharField(max_length=1000)),
-                ('image_name', models.CharField(max_length=100)),
-                ('image_marker_data', models.CharField(max_length=1000)),
+                ('image_location', models.TextField(max_length=1000)),
+                ('image_name', models.TextField(max_length=100)),
+                ('image_marker_data', models.TextField(max_length=1000)),
             ],
         ),
     ]
