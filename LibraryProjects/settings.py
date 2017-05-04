@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'LibraryProjects.wsgi.application'
 
 #}
 
+# Update database configuration with $DATABASE_URL.
 import dj_database_url
-DATABASES = {
-    'default' : dj_database_url.config()
-}
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 
 
