@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6be92d0e-d19a-4594-b6cd-324311d8cbbe" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_360_Views_Framework" afterPath="$PROJECT_DIR$/_360_Views_Framework" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/views.py" afterPath="$PROJECT_DIR$/Framework/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LibraryProjects/settings.py" afterPath="$PROJECT_DIR$/LibraryProjects/settings.py" />
     </list>
     <ignored path="_360_views_frameork.iws" />
@@ -50,7 +48,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
@@ -74,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
@@ -153,9 +151,9 @@
         <option value="$PROJECT_DIR$/Framework/imageController.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/Framework/migrations/0001_initial.py" />
-        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
-        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
         <option value="$PROJECT_DIR$/Framework/views.py" />
+        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
+        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
       </list>
     </option>
   </component>
@@ -923,14 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Framework/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -938,6 +928,14 @@
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

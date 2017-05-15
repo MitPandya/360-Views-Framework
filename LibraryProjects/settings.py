@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'LibraryProjects.urls'
 
-X_FRAME_OPTIONS = 'DENY'
+X_FRAME_OPTIONS = 'ALLOW'
 
 TEMPLATES = [
     {
