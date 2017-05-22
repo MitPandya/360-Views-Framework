@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6be92d0e-d19a-4594-b6cd-324311d8cbbe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Framework/static/views/image_dialog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_360_Views_Framework" afterPath="$PROJECT_DIR$/_360_Views_Framework" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/imageController.py" afterPath="$PROJECT_DIR$/Framework/imageController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/static/css/app.css" afterPath="$PROJECT_DIR$/Framework/static/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/static/js/controllers/MainController.js" afterPath="$PROJECT_DIR$/Framework/static/js/controllers/MainController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/static/views/home.html" afterPath="$PROJECT_DIR$/Framework/static/views/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/urls.py" afterPath="$PROJECT_DIR$/Framework/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/views.py" afterPath="$PROJECT_DIR$/Framework/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <ignored path="_360_views_frameork.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -129,8 +120,8 @@
       <file leaf-file-name="imageController.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Framework/imageController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+            <state relative-caret-position="225">
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -1035,8 +1026,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Framework/imageController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        <state relative-caret-position="225">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
