@@ -3,6 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core import serializers
 import json
 from models import Image
+from bs4 import BeautifulSoup
+import requests
 
 class ImageController:
     def __init__(self):
@@ -10,7 +12,7 @@ class ImageController:
 
     @classmethod
     def get_image(self, image_name):
-        print 'here'
+        print 'image name : ',image_name
         try:
             a = Image.objects.get(image_name = image_name)
             image = serializers.serialize('json', [a,])
@@ -19,6 +21,26 @@ class ImageController:
             return image
         except ObjectDoesNotExist:
             return None
+
+    @classmethod
+    def get_image_list(self):
+        print 'inside get image list'
+        try:
+            # url of the server where 360 images are saved
+            url = "https://iiif-staging02.lib.ncsu.edu/360/"
+            soup = BeautifulSoup(requests.get(url).text)
+
+            hrefs = []
+
+            for a in soup.find_all('a'):
+                hrefs.append(a['href'])
+
+            images = [i for i in hrefs if '.jpg' in i or '.png' in i]
+
+            return images
+
+        except:
+            print("Unexpected error fetching images from url")
 
     @classmethod
     def save_image(self , image_data):

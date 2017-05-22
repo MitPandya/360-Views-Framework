@@ -26,6 +26,16 @@ def get_image(request):
     except Exception:
             return None
 
+def get_image_list(request):
+    print 'inside get image list'
+    try:
+        if request.method == 'GET':
+            image_list = imageController.ImageController.get_image_list()
+            return HttpResponse(
+                json.dumps({'image_list': image_list}))
+    except Exception:
+        return None
+
 @csrf_exempt
 def save_image(request):
     if request.method == "POST":
@@ -34,3 +44,4 @@ def save_image(request):
         imageController.ImageController.save_image(image_data)
         return HttpResponse(json.dumps({'saved':True}))
 
+#171421216205000

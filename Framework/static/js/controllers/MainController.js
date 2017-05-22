@@ -4,9 +4,11 @@
 'use strict';
 
 angular.module('360ViewsFramework')
-.controller('MainController', function($scope, $sce, $http, $timeout) {
+.controller('MainController', function($scope, $sce, $http, $timeout,$mdDialog) {
 
-	$scope.file = 'https://lh3.googleusercontent.com/FJVjdRim6AyMX95ZYyuyDBLriOe86zz0Zkae99IGKDEn9lX7mC_Zdr_ai7bo_Ea-OpH50_A04rLtaAoTen2e8KHmI8OKJ3nk2C1AQIB60u2C3HOnE3s6GVioFSL5lxTYbJLge0BXpF2b9MWtkfWaqxu0EspvAtCiRxoj6zvxQ-nxmrx8V6W3FOw_fl5Usk9XnhanmnUBA7_ztX0hlboPJFtErBtohUx1OYQcbpUwPFGuUvs8QhLyt52Dp6vlsHUeXC7QQpdluhZppHAVjx-PY2dYTwCEgjSSaUpKbqzNb1GvpHQpiSuI4QExvYG7F7oxKLWNC8fOu4gjM2Vkew9CI-YmjNO7Jwg_t5O5WXjFOd4UcM8c-xDZWciUhOEek3mCj0XuWOjWrvrDM1X8DClyN7Qy_CfUBZbZrTLw-K0_c34PlKnekxfe5pLg9HNnoJgYQbobcdQQylsSMbWSHwc5A2sLtJmCf03c8ZSU_pskz2CuargOVEDRzqhue1zzEAw1XnrVriUTFWcAtGMibGn9ELCEyI17EVSRDPjwAHhJGvwB4E5aIRNHOE63wh-7NlgIyw=w1920-h1006';
+	$scope.file = 'https://iiif-staging02.lib.ncsu.edu/360/creativity_studio.jpg';
+	$scope.serverURL = 'https://iiif-staging02.lib.ncsu.edu/360/';
+	$scope.imageList = [];
 	$scope.getUrl = function(url) {
     	return $sce.trustAsResourceUrl(url);
 	}
@@ -178,6 +180,56 @@ angular.module('360ViewsFramework')
 			// or server returns response with an error status.
 		});
 	}
+
+	//method to fetch image list
+	$scope.showImageList = function(){
+		console.log('inside showImageList');
+		$http({
+  		method: 'GET',
+  		url: '/fetch_image_list'
+		}).then(function successCallback(response) {
+			$scope.imageList = response.data.image_list;
+			console.log($scope.imageList);
+			$scope.showDialog();
+		}, function errorCallback(response) {
+			console.log('error fetching image list');
+		});
+	}
+
+	$scope.showDialog = function() {
+		$mdDialog.show({
+		  controller: DialogController,
+		  templateUrl: '/static/views/image_dialog.html',
+		  parent: angular.element(document.body),
+		  clickOutsideToClose:true,
+		  locals:{dataToPass: $scope.imageList},
+		  fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+		})
+		.then(function(answer) {
+		  	console.log(answer);
+		  	$scope.fileName = answer;
+			$scope.file = $scope.serverURL+answer;
+			$scope.onImageChange();
+		}, function() {
+		  console.log('You cancelled the dialog.');
+		});
+  	};
+
+  	function DialogController($scope, $mdDialog, dataToPass) {
+		$scope.hide = function() {
+		  $mdDialog.hide();
+		};
+
+		$scope.cancel = function() {
+		  $mdDialog.cancel();
+		};
+
+		$scope.imageList = dataToPass;
+
+		$scope.answer = function(answer) {
+		  $mdDialog.hide(answer);
+		};
+  	}
 
 	$scope.parseData = function(data){
 		data = data.replace(/u'/g , "\"").replace(/'/g, "\"");
