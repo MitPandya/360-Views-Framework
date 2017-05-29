@@ -4,9 +4,10 @@
 1. Clone the github source code repository to local machine from here <br />
 https://github.ncsu.edu/ncsu-libraries/360-views-framework.git <br />
 The cloned repository will be available under `360-views-framework` folder.
-2. Navigate to cloned repository and install dependencies using `sudo pip install -r requirements.txt`.
-3. Run the following command `python manage.py runserver` in the terminal to finally run the web-application.
-4. If the application runs successfully you will see a URL in the terminal, copy and paste that URL in a browser to finally use the application.
+2. Navigate to cloned repository and install dependency `sudo apt-get install libpq-dev`.
+3. Install other dependencies using `sudo pip install -r requirements.txt` from requirements.txt file.
+4. Run the following command `python manage.py runserver` in the terminal to finally run the web-application.
+5. If the application runs successfully you will see a URL in the terminal, copy and paste that URL in a browser to finally use the application.
 
 `Runing the web-application`
 Click on the below link to access the web-application.<br />
