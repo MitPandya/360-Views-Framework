@@ -254,14 +254,15 @@ angular.module('360ViewsFramework')
 
 });
 angular.module('360ViewsFramework')
-.controller('DemoCtrl', function($timeout, $q, $log) {
+.controller('DemoCtrl', function($timeout, $scope, $q, $log, $http) {
     var self = this;
 
     self.simulateQuery = false;
     self.isDisabled    = false;
 
     // list of `state` value/display objects
-    self.states        = loadAll();
+
+	self.states = loadAll();
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange   = searchTextChange;
@@ -303,22 +304,22 @@ angular.module('360ViewsFramework')
     /**
      * Build `states` list of key/value pairs
      */
-    function loadAll() {
-      var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
-              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
-              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
-              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
-              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
-              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
-              Wisconsin, Wyoming';
 
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
+    function loadAll(){
+		var allStates = '';
+
+		$http({
+  		method: 'GET',
+  		url: '/fetch_layer_list'
+		}).then(function successCallback(response) {
+			allStates = response.data.layer_list;
+			console.log(allStates);
+			$scope.items = allStates.split(/, +/g);
+		}, function errorCallback(response) {
+			console.log('error fetching layer list');
+		});
+
+	}
 
     /**
      * Create filter function for a query string

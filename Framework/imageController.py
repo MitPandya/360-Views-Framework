@@ -43,6 +43,14 @@ class ImageController:
             print("Unexpected error fetching images from url")
 
     @classmethod
+    def get_layer_list(self):
+        print 'inside get layer list'
+        try:
+            return 'Library, EB'
+        except:
+            print("Unexpected error fetching images from url")
+
+    @classmethod
     def save_image(self , image_data):
         try:
             image = Image.objects.get(image_name=image_data['image']['name'])

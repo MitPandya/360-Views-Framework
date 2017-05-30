@@ -36,6 +36,16 @@ def get_image_list(request):
     except Exception:
         return None
 
+def get_layer_list(request):
+    print 'inside get layer list'
+    try:
+        if request.method == 'GET':
+            layer_list = imageController.ImageController.get_layer_list()
+            return HttpResponse(
+                json.dumps({'layer_list': layer_list}))
+    except Exception:
+        return None
+
 @csrf_exempt
 def save_image(request):
     if request.method == "POST":
