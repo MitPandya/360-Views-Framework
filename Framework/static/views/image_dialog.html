@@ -1,4 +1,4 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog aria-label="360 Images" style="max-width:500px; max-height:550px;top:50px;position:absolute;">
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -8,8 +8,11 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <div class="md-dialog-content" ng-repeat="item in imageList">
-        <a href="#" ng-click="answer(item)">{{item}}</a>
+      <div class="md-dialog-content" ng-repeat="item in imageList" layout="row" flex="100">
+        <a href="#" layout="column" ng-click="answer(item)" style="min-width: 300px;width: 300px;max-width: 300px;">{{item}}</a>
+        <div class="thumbnail" layout="column">
+            <img class="thumbnail" ng-src="https://iiif-staging02.lib.ncsu.edu/360/{{item}}">
+        </div>
       </div>
     </md-dialog-content>
 

@@ -261,13 +261,14 @@ angular.module('360ViewsFramework')
     self.isDisabled    = false;
 
     // list of `state` value/display objects
-
-	self.states = loadAll();
-    self.querySearch   = querySearch;
-    self.selectedItemChange = selectedItemChange;
-    self.searchTextChange   = searchTextChange;
-
-    self.newState = newState;
+	loadAll();
+	$timeout( function(){
+            self.states = $scope.items;
+			self.querySearch   = querySearch;
+    		self.selectedItemChange = selectedItemChange;
+    		self.searchTextChange   = searchTextChange;
+    		self.newState = newState;
+	}, 3000 );
 
     function newState(state) {
       alert("Sorry! You'll need to create a Constitution for " + state + " first!");

@@ -59,3 +59,9 @@
 
 .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
   margin-bottom: 0; }
+
+.thumbnail{
+  display: inline-block;
+  max-width:100px;
+  max-height:100px;
+}
