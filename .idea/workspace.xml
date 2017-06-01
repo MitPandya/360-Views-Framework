@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6be92d0e-d19a-4594-b6cd-324311d8cbbe" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_360_Views_Framework" afterPath="$PROJECT_DIR$/_360_Views_Framework" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/static/css/app.css" afterPath="$PROJECT_DIR$/Framework/static/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/imageController.py" afterPath="$PROJECT_DIR$/Framework/imageController.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/static/js/controllers/MainController.js" afterPath="$PROJECT_DIR$/Framework/static/js/controllers/MainController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/static/views/image_dialog.html" afterPath="$PROJECT_DIR$/Framework/static/views/image_dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Framework/static/views/home.html" afterPath="$PROJECT_DIR$/Framework/static/views/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LibraryProjects/settings.py" afterPath="$PROJECT_DIR$/LibraryProjects/settings.py" />
     </list>
     <ignored path="_360_views_frameork.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainController.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Framework/static/js/controllers/MainController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="20" />
+            <state relative-caret-position="615">
+              <caret line="193" column="44" selection-start-line="193" selection-start-column="44" selection-end-line="193" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -51,10 +53,12 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/static/views/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="70" column="31" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="31" />
+            <state relative-caret-position="816">
+              <caret line="92" column="80" selection-start-line="92" selection-start-column="62" selection-end-line="92" selection-end-column="80" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#md-radio-group#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,8 +77,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+            <state relative-caret-position="105">
+              <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -90,13 +94,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image_dialog.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="image_dialog.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/static/views/image_dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="97" selection-start-line="11" selection-start-column="97" selection-end-line="11" selection-end-column="97" />
+            <state relative-caret-position="300">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#md-dialog#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#md-dialog-content#0;n#form#0;n#md-dialog#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,8 +120,8 @@
       <file leaf-file-name="imageController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Framework/imageController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
+            <state relative-caret-position="660">
+              <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -167,17 +172,17 @@
         <option value="$PROJECT_DIR$/360_Views_Framework/urls.py" />
         <option value="$PROJECT_DIR$/_360_Views_Framework/views.py" />
         <option value="$PROJECT_DIR$/Framework/migrations/0001_initial.py" />
-        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
-        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/_360_Views_Framework/static/views/home.html" />
         <option value="$PROJECT_DIR$/Framework/urls.py" />
         <option value="$PROJECT_DIR$/Framework/views.py" />
+        <option value="$PROJECT_DIR$/Framework/static/css/app.css" />
+        <option value="$PROJECT_DIR$/Framework/static/views/image_dialog.html" />
+        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
+        <option value="$PROJECT_DIR$/LibraryProjects/settings.py" />
         <option value="$PROJECT_DIR$/Framework/imageController.py" />
         <option value="$PROJECT_DIR$/Framework/static/views/home.html" />
         <option value="$PROJECT_DIR$/Framework/static/js/controllers/MainController.js" />
-        <option value="$PROJECT_DIR$/Framework/static/css/app.css" />
-        <option value="$PROJECT_DIR$/Framework/static/views/image_dialog.html" />
       </list>
     </option>
   </component>
@@ -924,14 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Framework/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -966,6 +963,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/static/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibraryProjects/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/static/views/image_dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#md-dialog#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#md-dialog-content#0;n#form#0;n#md-dialog#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Framework/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -976,47 +1000,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Framework/imageController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
+        <state relative-caret-position="660">
+          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/static/css/app.css">
+    <entry file="file://$PROJECT_DIR$/Framework/static/views/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="816">
+          <caret line="92" column="80" selection-start-line="92" selection-start-column="62" selection-end-line="92" selection-end-column="80" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-radio-group#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Framework/static/js/controllers/MainController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="20" />
+        <state relative-caret-position="615">
+          <caret line="193" column="44" selection-start-line="193" selection-start-column="44" selection-end-line="193" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/static/views/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="70" column="31" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/static/views/image_dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="97" selection-start-line="11" selection-start-column="97" selection-end-line="11" selection-end-column="97" />
-          <folding>
-            <element signature="n#style#0;n#md-dialog#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

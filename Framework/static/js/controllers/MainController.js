@@ -4,17 +4,38 @@
 'use strict';
 
 angular.module('360ViewsFramework')
-.controller('MainController', function($scope, $sce, $http, $timeout,$mdDialog) {
+.factory('messageService', function ($rootScope) {
+
+	var sharedService = {};
+
+	sharedService.message = {};
+
+	sharedService.prepForBroadcast = function(msg) {
+		this.message = msg;
+		this.broadcastItem();
+	};
+
+	sharedService.broadcastItem = function () {
+		$rootScope.$broadcast('handleBroadcast');
+	};
+
+	return sharedService;
+});
+
+
+angular.module('360ViewsFramework')
+.controller('MainController', function($scope, $sce, $http, $timeout, $mdDialog, messageService) {
 
 	$scope.file = 'https://iiif-staging02.lib.ncsu.edu/360/creativity_studio.jpg';
 	$scope.serverURL = 'https://iiif-staging02.lib.ncsu.edu/360/';
 	$scope.imageList = [];
 	$scope.getUrl = function(url) {
     	return $sce.trustAsResourceUrl(url);
-	}
+	};
 
 	$scope.PSV = null;
 	$scope.markerType = null;
+	$scope.layer = null;
 
 	$scope.onImageChange = function(){
 		$http({
@@ -45,16 +66,20 @@ angular.module('360ViewsFramework')
 			$scope.PSV.setPanorama($scope.file);
 		});
 
-	}
+	};
 
 	$scope.PSV = new PhotoSphereViewer({
 		panorama: $scope.file,
 		container: 'photosphere'
-	})
+	});
 
   	$scope.onClick = function(event) {
 		if(event.srcElement.localName == 'svg') {
-			if ($scope.markerType == null) {
+			if ($scope.markerType == null || $scope.markerType == 'Location') {
+				if($scope.markerType == null || angular.isUndefined($scope.markerData)){
+					$scope.markerData = {};
+					$scope.markerData.tooltipText = 'Generated pin';
+				}
 				$scope.PSV.addMarker({
 					id: '#' + Math.random(),
 					longitude: $scope.e.longitude,
@@ -63,8 +88,11 @@ angular.module('360ViewsFramework')
 					width: 32,
 					height: 32,
 					anchor: 'bottom center',
-					tooltip: 'Generated pin',
-					layer: 'library',
+					tooltip: {
+						content: $scope.markerData.tooltipText == '' ? 'Generated pin' : $scope.markerData.tooltipText,
+						position: 'top'
+					},
+					layer: $scope.layer,
 					data: {
 						generated: true
 					}
@@ -87,7 +115,7 @@ angular.module('360ViewsFramework')
 						content: $scope.markerData.tooltipText == '' ? 'An HTML marker' : $scope.markerData.tooltipText,
 						position: 'right'
 					},
-					layer: 'library',
+					layer: $scope.layer,
 					data: {
 						generated: true
 					}
@@ -99,28 +127,28 @@ angular.module('360ViewsFramework')
 					x: $scope.e.texture_x,
 					y: $scope.e.texture_y,
 					tooltip: $scope.markerData.tooltipText == '' ? 'A Circle marker' : $scope.markerData.tooltipText,
-					layer: 'library',
+					layer: $scope.layer,
 					data: {
 						generated: true
 					}
 				})
 			}
 		}
-  	}
+  	};
 
 	$scope.e;
 	$scope.PSV.on('click', function(e) {
   		$scope.e = e;
 	});
-	$scope.layer = ""
+	$scope.selectedLayer = ""
 	$scope.handleClick = function(event){
 		if(event.srcElement.className == "psv-layers-list-name"){
-			$scope.layer = event.srcElement.innerText;
+			$scope.selectedLayer = event.srcElement.innerText;
 		}
-	}
+	};
 	// filter markers based on layer
-	$scope.$watch('layer', function (newValue, oldValue, scope) {
-    	console.log('layer '+ newValue +' '+ oldValue);
+	$scope.$watch('selectedLayer', function (newValue, oldValue, scope) {
+    	console.log('selectedLayer '+ newValue +' '+ oldValue);
 		if(newValue != oldValue) {
 			$scope.filterData(newValue);
 		}
@@ -161,25 +189,32 @@ angular.module('360ViewsFramework')
 	};
 
 	$scope.saveImageToBackend = function(){
+
+		if( angular.isUndefined($scope.layer) || $scope.layer == '' || $scope.layer == null){
+			alert("Please select a layer!");
+			return;
+		}
+		else {
 			$scope.image = {};
 			$scope.image.name = $scope.fileName;
 			$scope.image.path = $scope.file;
 			$scope.image.marker_json = $scope.getMarkerData();
 			$http({
-			method: 'POST',
-			url: '/save_image',
-			data: JSON.stringify({'image':$scope.image}),
-			headers: {'Content-Type': 'application/json'}
-		}).then(function successCallback(response) {
-			console.log('response'+response);
-			// this callback will be called asynchronously
-			// when the response is available
-		}, function errorCallback(response) {
-			console.log('error');
-			// called asynchronously if an error occurs
-			// or server returns response with an error status.
-		});
-	}
+				method: 'POST',
+				url: '/save_image',
+				data: JSON.stringify({'image': $scope.image}),
+				headers: {'Content-Type': 'application/json'}
+			}).then(function successCallback(response) {
+				console.log('response' + response);
+				// this callback will be called asynchronously
+				// when the response is available
+			}, function errorCallback(response) {
+				console.log('error');
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+		}
+	};
 
 	//method to fetch image list
 	$scope.showImageList = function(){
@@ -194,7 +229,7 @@ angular.module('360ViewsFramework')
 		}, function errorCallback(response) {
 			console.log('error fetching image list');
 		});
-	}
+	};
 
 	$scope.showDialog = function() {
 		$mdDialog.show({
@@ -231,13 +266,17 @@ angular.module('360ViewsFramework')
 		};
   	}
 
+  	$scope.$on('handleBroadcast', function() {
+       $scope.layer = messageService.message;
+   	});
+
 	$scope.parseData = function(data){
 		data = data.replace(/u'/g , "\"").replace(/'/g, "\"");
 		data = data.replace(/True/g , "\"True\"").replace(/False/g , "\"False\"");
 		data = data.replace(/""True""/g , "\"True\"").replace(/""False""/g , "\"False\"");
 		data = JSON.parse(data);
 		return data.markers;
-	}
+	};
 
 	$scope.filterData = function(layerFilter){
 		if(layerFilter != null && layerFilter != ""){
@@ -254,7 +293,7 @@ angular.module('360ViewsFramework')
 
 });
 angular.module('360ViewsFramework')
-.controller('DemoCtrl', function($timeout, $scope, $q, $log, $http) {
+.controller('DemoCtrl', function($timeout, $scope, $q, $log, $http, messageService) {
     var self = this;
 
     self.simulateQuery = false;
@@ -262,16 +301,17 @@ angular.module('360ViewsFramework')
 
     // list of `state` value/display objects
 	loadAll();
-	$timeout( function(){
-            self.states = $scope.items;
-			self.querySearch   = querySearch;
-    		self.selectedItemChange = selectedItemChange;
-    		self.searchTextChange   = searchTextChange;
-    		self.newState = newState;
-	}, 3000 );
+	self.querySearch   = querySearch;
+	self.selectedItemChange = selectedItemChange;
+	self.searchTextChange   = searchTextChange;
+	self.newState = newState;
+
 
     function newState(state) {
-      alert("Sorry! You'll need to create a Constitution for " + state + " first!");
+		console.log("creating " + state);
+		if(angular.isDefined(state)){
+			messageService.prepForBroadcast(state);
+		}
     }
 
     // ******************************
@@ -299,7 +339,10 @@ angular.module('360ViewsFramework')
     }
 
     function selectedItemChange(item) {
-      $log.info('Item changed to ' + JSON.stringify(item));
+      	$log.info('Item changed to ' + JSON.stringify(item));
+		if(angular.isDefined(item)){
+			messageService.prepForBroadcast(item);
+		}
     }
 
     /**
@@ -315,7 +358,8 @@ angular.module('360ViewsFramework')
 		}).then(function successCallback(response) {
 			allStates = response.data.layer_list;
 			console.log(allStates);
-			$scope.items = allStates.split(/, +/g);
+			$scope.items = allStates;
+			self.states = $scope.items;
 		}, function errorCallback(response) {
 			console.log('error fetching layer list');
 		});
@@ -326,14 +370,14 @@ angular.module('360ViewsFramework')
      * Create filter function for a query string
      */
     function createFilterFor(query) {
-      var lowercaseQuery = angular.lowercase(query);
 
       return function filterFn(state) {
-        return (state.value.indexOf(lowercaseQuery) === 0);
+        return (state.indexOf(query) === 0);
       };
 
     }
   });
+
 angular.module('360ViewsFramework')
 	.directive('chooseFile', function() {
     return {

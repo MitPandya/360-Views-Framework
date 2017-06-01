@@ -46,7 +46,21 @@ class ImageController:
     def get_layer_list(self):
         print 'inside get layer list'
         try:
-            return 'Library, EB'
+            layers = []
+            data = Image.objects.get()
+            markerData = serializers.serialize('json', [data,])
+            markerData = eval(markerData)
+            print markerData
+            markers = {}
+            for i in range(len(markerData)):
+                markers = eval(markerData[i]['fields']['image_marker_data'])
+                if 'markers' in markers:
+                    for j in range(len(markers['markers'])):
+                        temp = markers['markers'][j]
+                        if 'layer' in temp:
+                            layers.append(temp['layer'])
+            print layers
+            return list(set(layers))
         except:
             print("Unexpected error fetching images from url")
 

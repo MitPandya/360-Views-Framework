@@ -1,16 +1,44 @@
 <div id="container" layout="column">
   <div layout="row" class="layout-align-center">
     <div id="photosphere" ng-dblclick="onClick($event)" ng-click="handleClick($event)" flex="60"></div>
-    <div flex="10" layout="row">
+    <div flex="10" layout="column">
+      <div ng-controller="DemoCtrl as ctrl" layout="column" style="margin-left:30px;" ng-cloak>
+          <p>Select Layer *</p>
+          <md-autocomplete
+              ng-disabled="ctrl.isDisabled"
+              md-no-cache="ctrl.noCache"
+              md-selected-item="ctrl.selectedItem"
+              md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+              md-search-text="ctrl.searchText"
+              md-selected-item-change="ctrl.selectedItemChange(item)"
+              md-items="item in ctrl.querySearch(ctrl.searchText)"
+              md-item-text="item"
+              md-min-length="0"
+              placeholder="Select or create a layer!">
+            <md-item-template>
+              <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item}}</span>
+            </md-item-template>
+            <md-not-found>
+              <a ng-click="ctrl.newState(ctrl.searchText)">Create {{ctrl.searchText}}?</a>
+            </md-not-found>
+          </md-autocomplete>
+      </div>
       <form ng-submit="submit()" ng-cloak style="margin-left:20%">
-        <p>Marker type: <span class="radioValue">{{ markerType }}</span> </p>
+        <p style="width: 170px;">Marker type: <span class="radioValue">{{ markerType }}</span> </p>
 
-        <md-radio-group ng-model="markerType" layout="row">
+        <md-radio-group ng-model="markerType" layout="row" style="margin-left:-30px;">
 
           <md-radio-button value="Shape" class="md-primary"> Shape </md-radio-button>
           <md-radio-button value="HTML"> HTML </md-radio-button>
+          <md-radio-button value="Location"> Location </md-radio-button>
 
         </md-radio-group>
+        <div ng-show="markerType == 'Location'">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Tooltip text </label>
+            <input ng-model="markerData.tooltipText">
+          </md-input-container>
+        </div>
         <div ng-show="markerType == 'HTML'">
           <md-input-container class="md-block" flex-gt-sm>
             <label> Text </label>
@@ -44,28 +72,6 @@
           </md-input-container>
         </div>
       </form>
-      <div ng-controller="DemoCtrl as ctrl" layout="column" style="margin-left:20px;" ng-cloak>
-          <p>Select Layer *</p>
-          <md-autocomplete
-              ng-disabled="ctrl.isDisabled"
-              md-no-cache="ctrl.noCache"
-              md-selected-item="ctrl.selectedItem"
-              md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-              md-search-text="ctrl.searchText"
-              md-selected-item-change="ctrl.selectedItemChange(item)"
-              md-items="item in items"
-              md-item-text="item"
-              md-min-length="0"
-              placeholder="Select or create a layer!">
-            <md-item-template>
-              <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item}}</span>
-            </md-item-template>
-            <md-not-found>
-              No states matching "{{ctrl.searchText}}" were found.
-              <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
-            </md-not-found>
-          </md-autocomplete>
-      </div>
     </div>
   </div>
     <div layout="row" flex="50" layout-align="center center">
