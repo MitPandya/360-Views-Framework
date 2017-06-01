@@ -1,6 +1,6 @@
 # 360 Views Framework
 
-`Runing the application from the source`
+`Running the application from the source`
 1. Clone the github source code repository to local machine from here <br />
 https://github.ncsu.edu/ncsu-libraries/360-views-framework.git <br />
 The cloned repository will be available under `360-views-framework` folder.
@@ -16,7 +16,7 @@ The cloned repository will be available under `360-views-framework` folder.
 4. Click on save button below to save the created markers.
 
 
-`Runing the web-application`
+`Running the web-application` <br />
 Click on the below link to access the web-application.<br />
 https://framework-360.herokuapp.com <br />
 Once you run the application, click on file picker to open any 360 image.<br />
